@@ -8,9 +8,4 @@ datasources:
     username: postgres
     password: ''
     dialect: POSTGRES
-
-liquibase:
-  datasources:
-    default:
-      drop-first: false
-      change-log: 'classpath:db/changeLog.xml'
+    schema-generate: create_drop
