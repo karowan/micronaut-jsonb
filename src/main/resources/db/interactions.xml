@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="interactions creation" author="auth">
+        <createTable tableName="user">
+            <column autoIncrement="true" name="ID" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_table_pkey"/>
+            </column>
+            <column name="uid" type="clob">
+                <constraints unique="true" />
+            </column>
+        </createTable>
+        <createTable tableName="user_interaction">
+            <column autoIncrement="true" name="ID" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_interaction_table_pkey"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="fk_interaction_user" referencedTableName="user" referencedColumnNames="id" />
+            </column>
+            <column name="properties" type="jsonb" />
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
